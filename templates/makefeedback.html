@@ -287,11 +287,12 @@
 
 <body class="body">
   <div class="content">
-    <div class="container-2 w-container languages">
+    <!-- <div class="container-2 w-container languages">
       <a href="#RUS" class="button w-button">RUS</a>
       <a href="#KAZ" class="button w-button">KAZ</a>
       <a href="#ENG" class="button w-button">ENG</a>
-    </div>
+    </div> -->
+    <br>
     <!-- <div class="text-block-2">Вы выбрали неоригинальный язык, из-за чего перевод может оказаться неправильным</div> -->
     <div class="container-3 w-container"><img
         src="{{orgPhoto}}" loading="lazy"
@@ -317,13 +318,21 @@
     <div class="feedback-form">
       <form action="/sendfeedback" method="post">
         <input type="hidden" name="orgId" value="{{ orgId }}">
-        <div class="container-4 w-container">
-          <label for="name-2" class="field-label">Тип услуг:</label>
-          <select id="field" name="field" data-name="Field" class="select-field w-select" required>
-            <option value="">Select one...</option>
-            <option value="First">First choice</option>
-            <option value="Second">Second choice</option>
-            <option value="Third">Third choice</option>
+        <div class="">
+          <label for="name-2" class="field-label" style="font-family: 'Roboto';
+          font-style: normal;
+          font-weight: 500;
+          font-size: 24px;
+          line-height: 28px;
+          
+          color: #000000;">Тип услуг:</label>
+          <br>
+          <select required id="field" name="serviceId" data-name="serviceId" class="" required>
+            <option>Не выбрано</option>
+            <!-- for serviceType in serviceTypes  -->
+            {% for serviceType in serviceTypes %}
+            <option value="{{serviceType.service_type_id}}">{{serviceType.service_type_name}}</option>
+            {% endfor %}
           </select>
         </div>
 

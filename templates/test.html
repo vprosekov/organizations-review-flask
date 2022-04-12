@@ -1,0 +1,99 @@
+<!-- table with organizations data -->
+<table border="1">
+    <th>orgId</th>
+    <th>orgName</th>
+    <th>orgEmail</th>
+    <th>orgPassword</th>
+    <th>orgType</th>
+    <th>orgPhoto</th>
+    <th>orgDescription</th>
+    {% for org in data %}
+    <tr>
+        <td>{{org.id}}</td>
+        <td>{{org.name}}</td>
+        <td>{{org.email}}</td>
+        <td>{{org.cachedpassword}}</td>
+        <td>{{org.org_type}}</td>
+        <td>{{org.photo}}</td>
+        <td>{{org.description}}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+<br>
+<br>
+<table border="1">
+    <th>id</th>
+    <th>orgId</th>
+    <th>serviceId</th>
+    {% for dat in data2 %}
+    <tr>
+        <td>{{dat.id}}</td>
+        <td>{{dat.orgId}}</td>
+        <td>{{dat.serviceId}}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+<br>
+<br>
+
+<table border="1">
+    <th>id</th>
+    <th>serviceId</th>
+    <th>organization_id</th>
+    <th>info_avaliability</th>
+    <th>comfort</th>
+    <th>queue_time</th>
+    <th>service_time</th>
+    <th>workers_politeness</th>
+    <th>notes_text</th>
+    <th>date_created</th>
+    {% for dat in data3 %}
+    <tr>
+        <td>{{dat.id}}</td>
+        <td>{{dat.serviceId}}</td>
+        <td>{{dat.organization_id}}</td>
+        <td>{{dat.info_avaliability}}</td>
+        <td>{{dat.comfort}}</td>
+        <td>{{dat.queue_time}}</td>
+        <td>{{dat.service_time}}</td>
+        <td>{{dat.workers_politeness}}</td>
+        <td>{{dat.notes_text}}</td>
+        <td>{{dat.date_created}}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+<table>
+    <th>serviceId</th>
+    <th>serviceCount</th>
+    {% for key, value in data4.items() %}
+    <tr>
+        <td>{{key}}</td>
+        <td>{{value.count}}</td>
+    </tr>
+    {% endfor %}
+</table>
+<br>
+<h1>0: {{data5[0]}}</h1>
+<h1>1: {{data5[1]}}</h1>
+<br>
+<br>
+<h1>1: {{data6[1]}}</h1>
+<h1>2: {{data6[2]}}</h1>
+<h1>3: {{data6[3]}}</h1>
+<h1>4: {{data6[4]}}</h1>
+<h1>5: {{data6[5]}}</h1>
+<h1>6: {{data6[6]}}</h1>
+<h1>7: {{data6[7]}}</h1>
+<h1>8: {{data6[8]}}</h1>
+<h1>9: {{data6[9]}}</h1>
+<h1>10: {{data6[10]}}</h1>
+<h1>11: {{data6[11]}}</h1>
+<h1>12: {{data6[12]}}</h1>
+<br>
+<br>
+{% for i in data7 %}
+<h1>{{i}}</h1>
+{% endfor %}
