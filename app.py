@@ -2,11 +2,15 @@ from flask import Flask, render_template, url_for, redirect, request
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 import json
+from flask_qrcode import QRcode
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///organizations-review-flask.db'
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = True
 db = SQLAlchemy(app)
+
+
+QRcode(app)
 
 # CREATE TABLE `organizations` (
 #   `id` INTEGER NOT NULL AUTO_INCREMENT,

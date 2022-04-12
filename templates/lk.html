@@ -93,7 +93,61 @@
             border: 1px solid #ccc;
             width: 70%;
             border-left: none;
-            height: 300px;
+            height: fit-content;
+        }
+
+
+
+        .button-3 {
+            width: 90%;
+            appearance: none;
+            background-color: #2ea44f;
+            border: 1px solid rgba(27, 31, 35, .15);
+            border-radius: 6px;
+            box-shadow: rgba(27, 31, 35, .1) 0 1px 0;
+            box-sizing: border-box;
+            color: #fff;
+            cursor: pointer;
+            display: inline-block;
+            font-family: -apple-system, system-ui, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+            font-size: 14px;
+            font-weight: 600;
+            line-height: 20px;
+            padding: 6px 16px;
+            position: relative;
+            text-align: center;
+            text-decoration: none;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+            vertical-align: middle;
+            white-space: nowrap;
+        }
+
+        .button-3:focus:not(:focus-visible):not(.focus-visible) {
+            box-shadow: none;
+            outline: none;
+        }
+
+        .button-3:hover {
+            background-color: #2c974b;
+        }
+
+        .button-3:focus {
+            box-shadow: rgba(46, 164, 79, .4) 0 0 0 3px;
+            outline: none;
+        }
+
+        .button-3:disabled {
+            background-color: #94d3a2;
+            border-color: rgba(27, 31, 35, .1);
+            color: rgba(255, 255, 255, .8);
+            cursor: default;
+        }
+
+        .button-3:active {
+            background-color: #298e46;
+            box-shadow: rgba(20, 70, 32, .2) 0 1px 0 inset;
         }
     </style>
 </head>
@@ -119,8 +173,7 @@
             <p class="title">Тип организации: {{orgType}}</p>
             <p>Описание: {{org.description}}</p>
             <p>Email: {{org.email}}</p>
-        </div>
-        <h3>Количество оценок: {{numberOfFeedbacks}}</h3>
+        </div><h3>Количество оценок: {{numberOfFeedbacks}}</h3>
         <div class="custom-select" style="width:200px;"> Услуги:
             <select id="mainServiceSelect" onchange="mainServiceSelectChanged()">
                 <option value="-1">Не выбрано</option>
@@ -132,6 +185,11 @@
         <span id="numberOfFeedbacksSelectMain">?</span> людей отправило отзыв по этой услуге
         <span id="avgOfFeedbacksSelectMain">?</span> средняя оценка данной услуги
         </p>
+
+
+        <div style="width:100%;display:flex"><img src="{{qrcode("127.0.0.1:3000/lk/" + org.id|string)}}" alt="" style="margin-left:auto;margin-right:auto;margin-bottom: 10px"></div>
+        <button class="button-3" role="button" onclick="downloadQR()">Скачать QR код файлом</button>
+        
     </div>
 
 
@@ -156,23 +214,23 @@
             function drawPieChart() {
                 if (document.getElementById("pieSelect").value == 3) {
                     var data = google.visualization.arrayToDataTable([
-                    ['Оценка', 'Количество'],
-                    ['Отлично', scoresTotal["1"]],
-                    ['Плохо', scoresTotal["0"]]
+                        ['Оценка', 'Количество'],
+                        ['Отлично', scoresTotal["1"]],
+                        ['Плохо', scoresTotal["0"]]
                     ]);
                 }
                 else if (document.getElementById("pieSelect").value == 2) {
                     var data = google.visualization.arrayToDataTable([
-                    ['Оценка', 'Количество'],
-                    ['Отлично', scoresTotal["1"]],
-                    ['Плохо', scoresTotal["0"]]
+                        ['Оценка', 'Количество'],
+                        ['Отлично', scoresTotal["1"]],
+                        ['Плохо', scoresTotal["0"]]
                     ]);
                 }
-                else{
+                else {
                     var data = google.visualization.arrayToDataTable([
-                    ['Оценка', 'Количество'],
-                    ['Отлично', scoresTotal["1"]],
-                    ['Плохо', scoresTotal["0"]]
+                        ['Оценка', 'Количество'],
+                        ['Отлично', scoresTotal["1"]],
+                        ['Плохо', scoresTotal["0"]]
                     ]);
                 }
                 /*var data = google.visualization.arrayToDataTable([
@@ -209,20 +267,20 @@
                 var data = google.visualization.arrayToDataTable([
                     ['Средняя оценка', 'Месяц'],
                     {%for key, value in months_score.items() %}
-                    ['{{key}}', {{value}}],
-                    {% endfor%}
+            ['{{key}}', {{ value }}],
+                {% endfor %}
                     
                 ]);
-                // Set Options
-                var options = {
-                    title: 'Средние оценки за последний год',
-                    hAxis: { title: 'Месяц' },
-                    vAxis: { title: 'Средняя оценка' },
-                    legend: 'none'
-                };
-                // Draw Chart
-                var chart = new google.visualization.LineChart(document.getElementById('barchart'));
-                chart.draw(data, options);
+            // Set Options
+            var options = {
+                title: 'Средние оценки за последний год',
+                hAxis: { title: 'Месяц' },
+                vAxis: { title: 'Средняя оценка' },
+                legend: 'none'
+            };
+            // Draw Chart
+            var chart = new google.visualization.LineChart(document.getElementById('barchart'));
+            chart.draw(data, options);
             }
 
         </script>
@@ -246,7 +304,14 @@
     </div>
 
     <script>
-        scoresTotal = {{scoresTotal | safe}}
+        function downloadQR() {
+            var a = document.createElement("a"); //Create <a>
+            a.style = "display:none";
+            a.href = "{{qrcode("127.0.0.1:3000/lk/" + org.id|string)}}"; //Image Base64 Goes here
+            a.download = "Image.png"; //File name Here
+            a.click(); //Downloaded file
+        }
+        scoresTotal = {{ scoresTotal | safe }}
         function openCity(evt, cityName) {
             // Declare all variables
             var i, tabcontent, tablinks;
@@ -269,19 +334,20 @@
         }
         function mainServiceSelectChanged() {
             feedbacksbysection = {{ serviceFeedbacks | safe }}
-        d = document.getElementById("mainServiceSelect").value;
-        //change value of id "numberOfFeedbacksSelectMain" to feedbacksbysection[d]["count"]
-        if (d != "-1") {
-            document.getElementById("numberOfFeedbacksSelectMain").textContent = feedbacksbysection[d]["count"];
-            document.getElementById("avgOfFeedbacksSelectMain").textContent = feedbacksbysection[d]["average"];
-        }
-        else{
-            document.getElementById("numberOfFeedbacksSelectMain").textContent = "?";
-            document.getElementById("avgOfFeedbacksSelectMain").textContent = "?";
-        
-        }
+            d = document.getElementById("mainServiceSelect").value;
+            //change value of id "numberOfFeedbacksSelectMain" to feedbacksbysection[d]["count"]
+            if (d != "-1") {
+                document.getElementById("numberOfFeedbacksSelectMain").textContent = feedbacksbysection[d]["count"];
+                document.getElementById("avgOfFeedbacksSelectMain").textContent = feedbacksbysection[d]["average"];
+            }
+            else {
+                document.getElementById("numberOfFeedbacksSelectMain").textContent = "?";
+                document.getElementById("avgOfFeedbacksSelectMain").textContent = "?";
+
+            }
         //alert(d);
         }
+
 
 
     </script>
