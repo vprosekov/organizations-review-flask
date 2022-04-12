@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Сделать оценку</title>
+  <style>
+    .w-form-formradioinput--inputType-custom {
+      border-top-width: 1px;
+      border-bottom-width: 1px;
+      border-left-width: 1px;
+      border-right-width: 1px;
+      border-top-color: #ccc;
+      border-bottom-color: #ccc;
+      border-left-color: #ccc;
+      border-right-color: #ccc;
+      border-top-style: solid;
+      border-bottom-style: solid;
+      border-left-style: solid;
+      border-right-style: solid;
+      width: 12px;
+      height: 12px;
+      border-bottom-left-radius: 50%;
+      border-bottom-right-radius: 50%;
+      border-top-left-radius: 50%;
+      border-top-right-radius: 50%;
+    }
+
+    .w-form-formradioinput--inputType-custom.w--redirected-focus {
+      box-shadow: 0px 0px 3px 1px #3898ec;
+    }
+
+    .w-form-formradioinput--inputType-custom.w--redirected-checked {
+      border-top-width: 4px;
+      border-bottom-width: 4px;
+      border-left-width: 4px;
+      border-right-width: 4px;
+      border-top-color: #3898ec;
+      border-bottom-color: #3898ec;
+      border-left-color: #3898ec;
+      border-right-color: #3898ec;
+    }
+
+    @media screen and (max-width: 479px) {
+      .button {
+        margin-left: 14px;
+        padding-top: 5px;
+        padding-right: 15px;
+        padding-bottom: 5px;
+        background-color: #b6b6b6;
+        color: #000;
+      }
+
+      .button-2 {
+        position: static;
+        display: inline-block;
+        margin-top: 0px;
+        margin-left: -85px;
+        padding-left: 15px;
+      }
+
+      .container {
+        padding-left: 141px;
+      }
+
+      .container-2 {
+        padding-right: 0px;
+        padding-left: 87px;
+        color: #000;
+      }
+
+      .text-block {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        margin-left: 153px;
+        padding-left: 0px;
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: normal;
+        -webkit-flex-direction: row;
+        -ms-flex-direction: row;
+        flex-direction: row;
+      }
+
+      .text-block-2 {
+        color: red;
+      }
+
+      .text-block-3 {
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 300;
+        font-size: 16px;
+        line-height: 19px;
+
+        color: #FF5C5C;
+      }
+
+      .text-block-4 {
+        margin-right: 0px;
+        padding-right: 0px;
+        padding-left: 0px;
+      }
+
+      .container-3 {
+        position: static;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+      }
+
+      .container-4 {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 24px;
+        line-height: 28px;
+
+        color: #000000;
+
+      }
+
+      .text-block-5 {
+        -webkit-box-flex: 0;
+        -webkit-flex: 0 0 auto;
+        -ms-flex: 0 0 auto;
+        flex: 0 0 auto;
+      }
+
+      .select-field {
+        margin-left: 29px;
+      }
+
+      .field-label {
+        -webkit-box-flex: 0;
+        -webkit-flex: 0 0 auto;
+        -ms-flex: 0 0 auto;
+        flex: 0 0 auto;
+        font-family: 'Open Sans', sans-serif;
+      }
+
+      .radio-button-field {
+        display: block;
+      }
+
+      .container-5 {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+      }
+
+      .submit-button {
+        display: block;
+        overflow: scroll;
+        margin-right: 20px;
+        margin-left: 20px;
+        padding-right: 15px;
+      }
+
+      .body {
+        font-family: 'Open Sans', sans-serif;
+      }
+
+      .button-3 {
+        background-color: #b6b6b6;
+        color: #000;
+      }
+    }
+
+    body {
+      display: flex;
+      font-family: 'Roboto';
+      font-style: normal;
+    }
+
+    .content {
+      margin-left: 40px;
+      margin-right: 40px;
+    }
+
+    .languages {
+
+      width: fit-content;
+      margin-right: 0;
+      margin-left: auto;
+    }
+
+    .container-3 {
+      margin-top: 20px;
+    }
+
+    .text-block-4 {
+      text-align: center;
+      font-family: 'Roboto';
+      font-style: normal;
+      font-weight: 500;
+      font-size: x-large;
+      line-height: 38px;
+
+      color: #000000;
+    }
+
+    .titlediv {
+      float: right;
+      margin-right: auto;
+      margin-left: auto;
+      width: fit-content;
+      margin-top: auto;
+      margin-bottom: auto;
+      height: fit-content;
+
+    }
+
+    .dscr {
+      font-family: 'Roboto';
+      font-style: normal;
+      font-weight: 300;
+      font-size: 16px;
+      line-height: 19px;
+
+      color: #000000;
+    }
+
+    /* CSS */
+    .button-3 {
+      width: 100%;
+      appearance: none;
+      background-color: #2ea44f;
+      border: 1px solid rgba(27, 31, 35, .15);
+      border-radius: 6px;
+      box-shadow: rgba(27, 31, 35, .1) 0 1px 0;
+      box-sizing: border-box;
+      color: #fff;
+      cursor: pointer;
+      display: inline-block;
+      font-family: -apple-system, system-ui, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 20px;
+      padding: 6px 16px;
+      position: relative;
+      text-align: center;
+      text-decoration: none;
+      user-select: none;
+      -webkit-user-select: none;
+      touch-action: manipulation;
+      vertical-align: middle;
+      white-space: nowrap;
+    }
+
+    .button-3:focus:not(:focus-visible):not(.focus-visible) {
+      box-shadow: none;
+      outline: none;
+    }
+
+    .button-3:hover {
+      background-color: #2c974b;
+    }
+
+    .button-3:focus {
+      box-shadow: rgba(46, 164, 79, .4) 0 0 0 3px;
+      outline: none;
+    }
+
+    .button-3:disabled {
+      background-color: #94d3a2;
+      border-color: rgba(27, 31, 35, .1);
+      color: rgba(255, 255, 255, .8);
+      cursor: default;
+    }
+
+    .button-3:active {
+      background-color: #298e46;
+      box-shadow: rgba(20, 70, 32, .2) 0 1px 0 inset;
+    }
+  </style>
+</head>
+
+<body class="body">
+  <div class="content">
+    <div class="container-2 w-container languages">
+      <a href="#RUS" class="button w-button">RUS</a>
+      <a href="#KAZ" class="button w-button">KAZ</a>
+      <a href="#ENG" class="button w-button">ENG</a>
+    </div>
+    <!-- <div class="text-block-2">Вы выбрали неоригинальный язык, из-за чего перевод может оказаться неправильным</div> -->
+    <div class="container-3 w-container"><img
+        src="{{orgPhoto}}" loading="lazy"
+        alt="" style="width: 50%;">
+      <div class="titlediv">
+        <div class="text-block-4">{{orgTitle}}</div>
+      </div>
+    </div>
+    <p class='dscr'>{{orgDescription}}</p>
+    <div class="text-block-3" style="font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 19px;
+    
+    color: #FF5C5C;
+    margin-top:20px;
+    margin-bottom:20px;
+    ">Оценка услуг проводится полностью анонимно</div>
+
+    <!-- form with 5 radiobuttons with names "Доступность информации:", "Комфортность условий:", "Длительность ожидания в очереди:", "Длительность обслуживания:", "Вежливость и компетентность сотрудников:" and 2 options "Good" and "Bad" -->
+
+    <div class="feedback-form">
+      <form action="/sendfeedback" method="post">
+        <input type="hidden" name="orgId" value="{{ orgId }}">
+        <div class="container-4 w-container">
+          <label for="name-2" class="field-label">Тип услуг:</label>
+          <select id="field" name="field" data-name="Field" class="select-field w-select" required>
+            <option value="">Select one...</option>
+            <option value="First">First choice</option>
+            <option value="Second">Second choice</option>
+            <option value="Third">Third choice</option>
+          </select>
+        </div>
+
+        <div class="avaliability" style="margin-top:20px;">
+          <!-- 2 radiobuttons in same row with options "Bad" and "Good" with label "Доступность информации" -->
+          <label style="font-family: 'Roboto';
+            font-style: normal;
+            font-weight: 500;
+            font-size: 22px;
+            line-height: 28px;
+            
+            color: #000000;">Доступность информации:</label>
+          <div class="avaliability-radio-button-field">
+            <input type="radio" id="avaliability-1" name="avaliability" value="0" class="radio-button w-radio" required>
+            <label for="avaliability-1" class="radio-button-label w-form-label">Bad</label>
+
+            <input type="radio" id="avaliability-2" name="avaliability" value="1" class="radio-button w-radio">
+            <label for="avaliability-2" class="radio-button-label w-form-label">Good</label>
+          </div>
+        </div>
+        
+        <div class="comfort" style="margin-top:20px;">
+          <!-- 2 radiobuttons in same row with options "Bad" and "Good" with label "Доступность информации" -->
+          <label style="font-family: 'Roboto';
+            font-style: normal;
+            font-weight: 500;
+            font-size: 22px;
+            line-height: 28px;
+            
+            color: #000000;">Комфортность условий:</label>
+          <div class="comfort-radio-button-field">
+            <input type="radio" id="comfort-1" name="comfort" value="0" class="radio-button w-radio" required>
+            <label for="comfort-1" class="radio-button-label w-form-label">Bad</label>
+
+            <input type="radio" id="comfort-2" name="comfort" value="1" class="radio-button w-radio">
+            <label for="comfort-2" class="radio-button-label w-form-label">Good</label>
+          </div>
+        </div>
+
+        <div class="queue_time" style="margin-top:20px;">
+          <!-- 2 radiobuttons in same row with options "Bad" and "Good" with label "Доступность информации" -->
+          <label style="font-family: 'Roboto';
+            font-style: normal;
+            font-weight: 500;
+            font-size: 22px;
+            line-height: 28px;
+            
+            color: #000000;">Длительность ожидания в очереди:</label>
+          <div class="queue_time-radio-button-field">
+            <input type="radio" id="queue_time-1" name="queue_time" value="0" class="radio-button w-radio" required>
+            <label for="comfort-1" class="radio-button-label w-form-label">Bad</label>
+
+            <input type="radio" id="queue_time-2" name="queue_time" value="1" class="radio-button w-radio">
+            <label for="queue_time-2" class="radio-button-label w-form-label">Good</label>
+          </div>
+        </div>
+
+        <div class="service_time" style="margin-top:20px;">
+          <!-- 2 radiobuttons in same row with options "Bad" and "Good" with label "Доступность информации" -->
+          <label style="font-family: 'Roboto';
+            font-style: normal;
+            font-weight: 500;
+            font-size: 22px;
+            line-height: 28px;
+            
+            color: #000000;">Длительность обслуживания:</label>
+          <div class="service_time-radio-button-field">
+            <input type="radio" id="service_time-1" name="service_time" value="0" class="radio-button w-radio" required>
+            <label for="comfort-1" class="radio-button-label w-form-label">Bad</label>
+
+            <input type="radio" id="service_time-2" name="service_time" value="1" class="radio-button w-radio">
+            <label for="service_time-2" class="radio-button-label w-form-label">Good</label>
+          </div>
+        </div>
+
+        <div class="workers_politeness" style="margin-top:20px;">
+          <!-- 2 radiobuttons in same row with options "Bad" and "Good" with label "Доступность информации" -->
+          <label style="font-family: 'Roboto';
+            font-style: normal;
+            font-weight: 500;
+            font-size: 22px;
+            line-height: 28px;
+            
+            color: #000000;">Вежливость и компетентность сотрудников:</label>
+          <div class="workers_politeness-radio-button-field">
+            <input type="radio" id="workers_politeness-1" name="workers_politeness" value="0" class="radio-button w-radio" required>
+            <label for="comfort-1" class="radio-button-label w-form-label">Bad</label>
+
+            <input type="radio" id="workers_politeness-2" name="workers_politeness" value="1" class="radio-button w-radio">
+            <label for="workers_politeness-2" class="radio-button-label w-form-label">Good</label>
+          </div>
+        </div>
+
+        <!-- Textarea with max length 200  named notes_text-->
+        <div class="notes-text" style="margin-top:20px;">
+          <label for="notes-text" class="field-label" style="font-family: 'Roboto';
+          font-style: normal;
+          font-weight: 500;
+          font-size: 24px;
+          line-height: 28px;
+          
+          color: #000000;">Замечания и предложения (по желанию):</label>
+          <br>
+          <textarea id="notes-text" maxlength="200" name="notes_text" data-name="Notes Text"
+            placeholder="" class="textarea w-input" style="margin-top:12px;width:100%;min-height:100px;background: #FFFFFF;
+            border: 2px solid #969696;
+            box-sizing: border-box;
+            border-radius: 15px;"></textarea>
+        </div>
+
+        <!-- form submit -->
+
+        <button class="button-3" role="button" style="margin-top:12px;">Отправить отзыв</button>
+
+
+      </form>
+    </div>
+    <br>
+    <br>
+</body>
+
+</html>
