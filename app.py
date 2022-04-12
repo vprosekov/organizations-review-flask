@@ -228,7 +228,7 @@ def getServiceFeedbacksByOrgId(orgId):
 # function to get number of scores by orgId
 def getScoresByOrgId(orgId):
     fbs = getFeedbacksByOrgId(orgId)
-    scores = {0:0, 1:0}
+    scores = {0:0, 1:0, 2:0, 3:0, 4:0, 5:0, 6:0, 7:0, 8:0, 9:0, 10:0}
     for i in fbs:
 
         scores[i.info_avaliability] += 1
@@ -243,14 +243,18 @@ def getScoresByOrgId(orgId):
 def getMonthAverageScoresByOrgId(orgId):
     fbs = db.session.query(Feedback).filter(Feedback.organization_id == orgId).all()
     months_score = {1:0, 2:0, 3:0, 4:0, 5:0, 6:0, 7:0, 8:0, 9:0, 10:0, 11:0, 12:0}
-
+    months_count = {1:0, 2:0, 3:0, 4:0, 5:0, 6:0, 7:0, 8:0, 9:0, 10:0, 11:0, 12:0}
     for i in fbs:
+        months_count[int(i.date_created.month)] += 1
         months_score[int(i.date_created.month)] += i.info_avaliability
         months_score[int(i.date_created.month)] += i.comfort
         months_score[int(i.date_created.month)] += i.queue_time
         months_score[int(i.date_created.month)] += i.service_time
         months_score[int(i.date_created.month)]+= i.workers_politeness
         months_score[int(i.date_created.month)] /= 5
+    for i in months_score:
+        if months_count[i] != 0:
+            months_score[i] /= months_count[i]
 
     
 
@@ -316,7 +320,7 @@ def lk(orgId):
 
 @app.route('/sendfeedback', methods=['POST'])
 def sendfeedback():
-    # return json.dumps(request.form)
+    return json.dumps(request.form)
     fb = Feedback()
     fb.organization_id = int(request.form['orgId'])
     fb.serviceId = int(request.form['serviceId'])

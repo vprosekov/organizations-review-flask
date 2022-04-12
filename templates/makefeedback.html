@@ -282,6 +282,44 @@
       background-color: #298e46;
       box-shadow: rgba(20, 70, 32, .2) 0 1px 0 inset;
     }
+
+    .slidecontainer {
+      width: 100%;
+    }
+
+    .slider {
+      -webkit-appearance: none;
+      width: 100%;
+      height: 15px;
+      border-radius: 5px;
+      background: #d3d3d3;
+      outline: none;
+      opacity: 0.7;
+      -webkit-transition: .2s;
+      transition: opacity .2s;
+    }
+
+    .slider:hover {
+      opacity: 1;
+    }
+
+    .slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 25px;
+      height: 25px;
+      border-radius: 50%;
+      background: #04AA6D;
+      cursor: pointer;
+    }
+
+    .slider::-moz-range-thumb {
+      width: 25px;
+      height: 25px;
+      border-radius: 50%;
+      background: #04AA6D;
+      cursor: pointer;
+    }
   </style>
 </head>
 
@@ -294,9 +332,7 @@
     </div> -->
     <br>
     <!-- <div class="text-block-2">Вы выбрали неоригинальный язык, из-за чего перевод может оказаться неправильным</div> -->
-    <div class="container-3 w-container"><img
-        src="{{orgPhoto}}" loading="lazy"
-        alt="" style="width: 50%;">
+    <div class="container-3 w-container"><img src="{{orgPhoto}}" loading="lazy" alt="" style="width: 50%;">
       <div class="titlediv">
         <div class="text-block-4">{{orgTitle}}</div>
       </div>
@@ -344,16 +380,13 @@
             font-size: 22px;
             line-height: 28px;
             
-            color: #000000;">Доступность информации:</label>
-          <div class="avaliability-radio-button-field">
-            <input type="radio" id="avaliability-1" name="avaliability" value="0" class="radio-button w-radio" required>
-            <label for="avaliability-1" class="radio-button-label w-form-label">Bad</label>
-
-            <input type="radio" id="avaliability-2" name="avaliability" value="1" class="radio-button w-radio">
-            <label for="avaliability-2" class="radio-button-label w-form-label">Good</label>
+            color: #000000;">Доступность информации: <span id="avaliability-value"></span></label>
+          <br>
+          <div class="slidecontainer">
+            <input type="range" min="1" max="10" value="5" class="slider" id="avaliability-slider" name="avaliability">
           </div>
         </div>
-        
+
         <div class="comfort" style="margin-top:20px;">
           <!-- 2 radiobuttons in same row with options "Bad" and "Good" with label "Доступность информации" -->
           <label style="font-family: 'Roboto';
@@ -362,14 +395,10 @@
             font-size: 22px;
             line-height: 28px;
             
-            color: #000000;">Комфортность условий:</label>
-          <div class="comfort-radio-button-field">
-            <input type="radio" id="comfort-1" name="comfort" value="0" class="radio-button w-radio" required>
-            <label for="comfort-1" class="radio-button-label w-form-label">Bad</label>
-
-            <input type="radio" id="comfort-2" name="comfort" value="1" class="radio-button w-radio">
-            <label for="comfort-2" class="radio-button-label w-form-label">Good</label>
-          </div>
+            color: #000000;">Комфортность условий: <span id="comfort-value"></span></label>
+            <div class="slidecontainer">
+              <input type="range" min="1" max="10" value="5" class="slider" id="comfort-slider" name="comfort">
+            </div>
         </div>
 
         <div class="queue_time" style="margin-top:20px;">
@@ -380,14 +409,10 @@
             font-size: 22px;
             line-height: 28px;
             
-            color: #000000;">Длительность ожидания в очереди:</label>
-          <div class="queue_time-radio-button-field">
-            <input type="radio" id="queue_time-1" name="queue_time" value="0" class="radio-button w-radio" required>
-            <label for="comfort-1" class="radio-button-label w-form-label">Bad</label>
-
-            <input type="radio" id="queue_time-2" name="queue_time" value="1" class="radio-button w-radio">
-            <label for="queue_time-2" class="radio-button-label w-form-label">Good</label>
-          </div>
+            color: #000000;">Длительность ожидания в очереди: <span id="queue_time-value"></span></label>
+            <div class="slidecontainer">
+              <input type="range" min="1" max="10" value="5" class="slider" id="queue_time-slider" name="queue_time">
+            </div>
         </div>
 
         <div class="service_time" style="margin-top:20px;">
@@ -398,14 +423,10 @@
             font-size: 22px;
             line-height: 28px;
             
-            color: #000000;">Длительность обслуживания:</label>
-          <div class="service_time-radio-button-field">
-            <input type="radio" id="service_time-1" name="service_time" value="0" class="radio-button w-radio" required>
-            <label for="comfort-1" class="radio-button-label w-form-label">Bad</label>
-
-            <input type="radio" id="service_time-2" name="service_time" value="1" class="radio-button w-radio">
-            <label for="service_time-2" class="radio-button-label w-form-label">Good</label>
-          </div>
+            color: #000000;">Длительность обслуживания: <span id="service_time-value"></span></label>
+            <div class="slidecontainer">
+              <input type="range" min="1" max="10" value="5" class="slider" id="service_time-slider" name="service_time">
+            </div>
         </div>
 
         <div class="workers_politeness" style="margin-top:20px;">
@@ -416,14 +437,10 @@
             font-size: 22px;
             line-height: 28px;
             
-            color: #000000;">Вежливость и компетентность сотрудников:</label>
-          <div class="workers_politeness-radio-button-field">
-            <input type="radio" id="workers_politeness-1" name="workers_politeness" value="0" class="radio-button w-radio" required>
-            <label for="comfort-1" class="radio-button-label w-form-label">Bad</label>
-
-            <input type="radio" id="workers_politeness-2" name="workers_politeness" value="1" class="radio-button w-radio">
-            <label for="workers_politeness-2" class="radio-button-label w-form-label">Good</label>
-          </div>
+            color: #000000;">Вежливость и компетентность сотрудников: <span id="workers_politeness-value"></span></label>
+            <div class="slidecontainer">
+              <input type="range" min="1" max="10" value="5" class="slider" id="workers_politeness-slider" name="workers_politeness">
+            </div>
         </div>
 
         <!-- Textarea with max length 200  named notes_text-->
@@ -436,8 +453,8 @@
           
           color: #000000;">Замечания и предложения (по желанию):</label>
           <br>
-          <textarea id="notes-text" maxlength="200" name="notes_text" data-name="Notes Text"
-            placeholder="" class="textarea w-input" style="margin-top:12px;width:100%;min-height:100px;background: #FFFFFF;
+          <textarea id="notes-text" maxlength="200" name="notes_text" data-name="Notes Text" placeholder=""
+            class="textarea w-input" style="margin-top:12px;width:100%;min-height:100px;background: #FFFFFF;
             border: 2px solid #969696;
             box-sizing: border-box;
             border-radius: 15px;"></textarea>
@@ -452,6 +469,47 @@
     </div>
     <br>
     <br>
+    <script>
+      var avaliability_slider = document.getElementById("avaliability-slider");
+      var avaliability_output = document.getElementById("avaliability-value");
+      avaliability_output.innerHTML = avaliability_slider.value;
+
+      avaliability_slider.oninput = function () {
+        avaliability_output.innerHTML = this.value;
+      }
+
+      var comfort_slider = document.getElementById("comfort-slider");
+      var comfort_output = document.getElementById("comfort-value");
+      comfort_output.innerHTML = comfort_slider.value;
+
+      comfort_slider.oninput = function () {
+        comfort_output.innerHTML = this.value;
+      }
+
+      var queue_time_slider = document.getElementById("queue_time-slider");
+      var queue_time_output = document.getElementById("queue_time-value");
+      queue_time_output.innerHTML = queue_time_slider.value;
+
+      queue_time_slider.oninput = function () {
+        queue_time_output.innerHTML = this.value;
+      }
+
+      var service_time_slider = document.getElementById("service_time-slider");
+      var service_time_output = document.getElementById("service_time-value");
+      service_time_output.innerHTML = service_time_slider.value;
+
+      service_time_slider.oninput = function () {
+        service_time_output.innerHTML = this.value;
+      }
+
+      var workers_politeness_slider = document.getElementById("workers_politeness-slider");
+      var workers_politeness_output = document.getElementById("workers_politeness-value");
+      workers_politeness_output.innerHTML = workers_politeness_slider.value;
+
+      workers_politeness_slider.oninput = function () {
+        workers_politeness_output.innerHTML = this.value;
+      }
+    </script>
 </body>
 
 </html>
