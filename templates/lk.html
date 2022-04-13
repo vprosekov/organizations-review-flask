@@ -1,12 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-
+{%set address="127.0.0.1:3000"%}
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Личный кабинет</title>
     <style>
+        body {
+            font-family: 'Roboto';
+            font-style: normal;
+            font-weight: 500;
+            font-size: 16px;
+        }
+
         ul {
             list-style-type: none;
             /* Remove bullets */
@@ -27,12 +34,11 @@
             /* Add some padding */
         }
 
-        .card {
+        /*.card {
             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
             transition: 0.3s;
             border-radius: 5px;
-            /* 5px rounded corners */
-        }
+        }*/
 
         /* Add rounded corners to the top left and the top right corner of the image */
         img {
@@ -40,9 +46,9 @@
         }
 
         /* On mouse-over, add a deeper shadow */
-        .card:hover {
+        /*.card:hover {
             box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
-        }
+        }*/
 
         /* Add some padding inside the card container */
         .container {
@@ -58,8 +64,8 @@
             float: left;
             border: 1px solid #ccc;
             background-color: #f1f1f1;
-            width: 30%;
-            height: 300px;
+            width: fit-content;
+            height: 100vh;
         }
 
         /* Style the buttons that are used to open the tab content */
@@ -99,7 +105,7 @@
 
 
         .button-3 {
-            width: 90%;
+            width: 100%;
             appearance: none;
             background-color: #2ea44f;
             border: 1px solid rgba(27, 31, 35, .15);
@@ -167,14 +173,18 @@
             <link rel="stylesheet"
                 href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-        <div class="card">
-            <img src="{{org.photo}}" style="width:20%">
-            <h1>Название организации: {{org.name}}</h1>
-            <p class="title">Тип организации: {{orgType}}</p>
-            <p>Описание: {{org.description}}</p>
-            <p>Email: {{org.email}}</p>
-        </div><h3>Количество оценок: {{numberOfFeedbacks}}</h3>
-        <div class="custom-select" style="width:200px;"> Услуги:
+        <div class="card" style="display:flex;flex-direction:row">
+            <img src="{{org.photo}}" style="width:400px;height:400px;">
+
+            <div style="margin-left: 20px;width:75%">
+                <h1>Название организации: {{org.name}}</h1>
+                <p class="title">Тип организации: {{orgType}}</p>
+                <p>Описание: {{org.description}}</p>
+                <p>Email: {{org.email}}</p>
+                <p>Количество оценок: {{numberOfFeedbacks}}</p>
+            </div>
+        </div>
+        <div class="custom-select" style="margin-top:20px;margin-bottom:20px"> Услуги:
             <select id="mainServiceSelect" onchange="mainServiceSelectChanged()">
                 <option value="-1">Не выбрано</option>
                 {% for serviceType in serviceTypes %}
@@ -187,9 +197,10 @@
         </p>
 
 
-        <div style="width:100%;display:flex"><img src="{{qrcode("127.0.0.1:3000/lk/" + org.id|string)}}" alt="" style="margin-left:auto;margin-right:auto;margin-bottom: 10px"></div>
+        <div style="width:100%;display:flex"><img src="{{qrcode(address+"/lk/" + org.id|string)}}" alt="{{address+"/lk/" + org.id|string}}"
+                style="margin-left:auto;margin-right:auto;margin-bottom: 10px"></div>
         <button class="button-3" role="button" onclick="downloadQR()">Скачать QR код файлом</button>
-        
+
     </div>
 
 
@@ -307,7 +318,7 @@
         function downloadQR() {
             var a = document.createElement("a"); //Create <a>
             a.style = "display:none";
-            a.href = "{{qrcode("127.0.0.1:3000/lk/" + org.id|string)}}"; //Image Base64 Goes here
+            a.href = "{{qrcode(address+"/lk/" + org.id|string)}}"; //Image Base64 Goes here
             a.download = "Image.png"; //File name Here
             a.click(); //Downloaded file
         }
@@ -334,19 +345,20 @@
         }
         function mainServiceSelectChanged() {
             feedbacksbysection = {{ serviceFeedbacks | safe }}
-            d = document.getElementById("mainServiceSelect").value;
-            //change value of id "numberOfFeedbacksSelectMain" to feedbacksbysection[d]["count"]
-            if (d != "-1") {
-                document.getElementById("numberOfFeedbacksSelectMain").textContent = feedbacksbysection[d]["count"];
-                document.getElementById("avgOfFeedbacksSelectMain").textContent = feedbacksbysection[d]["average"];
-            }
-            else {
-                document.getElementById("numberOfFeedbacksSelectMain").textContent = "?";
-                document.getElementById("avgOfFeedbacksSelectMain").textContent = "?";
-
-            }
-        //alert(d);
         }
+        d = document.getElementById("mainServiceSelect").value;
+        //change value of id "numberOfFeedbacksSelectMain" to feedbacksbysection[d]["count"]
+        if (d != "-1") {
+            document.getElementById("numberOfFeedbacksSelectMain").textContent = feedbacksbysection[d]["count"];
+            document.getElementById("avgOfFeedbacksSelectMain").textContent = feedbacksbysection[d]["average"];
+        }
+        else {
+            document.getElementById("numberOfFeedbacksSelectMain").textContent = "?";
+            document.getElementById("avgOfFeedbacksSelectMain").textContent = "?";
+
+        }
+        //alert(d);
+        
 
 
 

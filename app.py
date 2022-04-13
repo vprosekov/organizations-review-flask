@@ -395,6 +395,24 @@ def about():
 @app.route('/user/<string:name>/<int:id>')
 def user(name, id):
     return "User page: {} {}".format(name, id)
+
+@app.route('/signin')
+def signin():
+    return render_template('signin.html')
+
+@app.route('/auth', methods=['POST'])
+def auth():
+    email = request.form['orgEmail']
+    password = request.form['orgPassword']
+    # print(email, password)
+    # print(Organization.query.filter_by(email=email).first())
+    if Organization.query.filter_by(email=email).first():
+        if Organization.query.filter_by(email=email).first().cachedpassword == password:
+            return redirect('/lk/' + str(Organization.query.filter_by(email=email).first().id))
+        else:
+            return redirect('/signin')
+    else:
+        return redirect('/signin')
     
 # make route create-article
 @app.route('/create-article', methods=['GET', 'POST'])
@@ -417,4 +435,4 @@ def create_article():
         return render_template('create-article.html')
 
 if __name__ == '__main__':
-    app.run()
+    app.run(host="0.0.0.0", port=3000, debug=True, threaded=True)
